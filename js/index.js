@@ -1,5 +1,21 @@
-// import './modules/hitbox.js'
-import Hitbox from './modules/hitbox.js'
+import {canvas, c} from './modules/init.js'
+import Player from './modules/player.js'
 
-let box = new Hitbox(350, 350, 30, 50)
-box.draw()
+let player = new Player({
+    x: 350,
+    y: 350,
+    dx: 0,
+    dy: 0,
+    width: 30,
+    height: 50
+})
+
+player.draw()
+
+function animate() {
+    requestAnimationFrame(animate)
+    canvas.clear()
+    player.update()
+}
+
+animate()
