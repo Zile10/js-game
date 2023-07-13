@@ -1,13 +1,25 @@
 // Importing My 'Pure JS Styling' library, from the web
 import {style} from 'https://rawcdn.githack.com/Zile10/pure-js/47ac233ec73ebfdd422bdaa0588bb57a19cd00d6/public/styles/styleUtils.js'
+import {Player} from '/js/modules/classes/_classes.js'
+import {animate, resizeCanvas} from '/js/modules/functions/_functions.js'
 
-const canvas = document.querySelector('canvas')
-const c = canvas.getContext('2d') 
-canvas.width = innerWidth; canvas.height = innerHeight
+// Global Variables
+window.canvas = document.querySelector('canvas')
+window.c = canvas.getContext('2d') 
+window.key = null
 
 canvas.clear = () => {
     c.clearRect(0, 0, canvas.width, canvas.height)
 }
+
+window.player = new Player({
+    x: 350,
+    y: 350,
+    dx: 0,
+    dy: 0,
+    width: 30,
+    height: 50
+})
 
 style('*', {
     boxSizing: 'border-box',
@@ -19,10 +31,13 @@ style(canvas, {
     border: '1px solid black',
 })
 
-global.key = null
 
 window.addEventListener('keydown', (e) => {
-    global.key = e.key
+    window.key = e.key
+})
+window.addEventListener('keyup', (e) => {
+    window.key == e.key ? window.key = null : window.key = window.key
 })
 
-export {canvas, c}
+resizeCanvas()
+animate()
