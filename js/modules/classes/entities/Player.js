@@ -1,3 +1,4 @@
+import CollisionBox from '../CollisionBox.js';
 import HitBox from './HitBox.js'
 
 export default class Player extends HitBox {
@@ -10,22 +11,29 @@ export default class Player extends HitBox {
             right: 'd',
 
         } || config.controls
+        this.speed = config.speed || 3
 
     }
     playerControls(){
-        if (window.key) {
+        let dxStop = false
+        collisionBoxes.forEach(box => {
+            if (box.x > (this.x + this.dx)) {
+                dxStop = true
+            }
+        })
+        if (window.key && !dxStop) {
             switch (window.key.toLowerCase()) {
                 case this.controls.forward:
-                    this.dy = -5
+                    this.dy = -this.speed
                     break;
                 case this.controls.left:
-                    this.dx = -5
+                    this.dx = -this.speed
                     break;
                 case this.controls.backward:
-                    this.dy = 5
+                    this.dy = this.speed
                     break;
                 case this.controls.right:
-                    this.dx = 5
+                    this.dx = this.speed
                     break;
                 default:
                     break;

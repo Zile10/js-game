@@ -9,7 +9,6 @@ export default class HitBox extends CollisionBox {
     move(){
         this.x += this.dx
         this.y += this.dy
-
     }
     update(){
         super.update()

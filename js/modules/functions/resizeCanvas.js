@@ -1,5 +1,5 @@
 
-export default function resizeCanvas() {
-    canvas.width = innerWidth;
-    canvas.height = innerHeight
+export default function resizeCanvas(width, height) {
+    canvas.width = width;
+    canvas.height = height
 }
