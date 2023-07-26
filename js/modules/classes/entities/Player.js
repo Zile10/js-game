@@ -16,11 +16,11 @@ export default class Player extends HitBox {
     }
     playerControls(){
         let dxStop = false
-        collisionBoxes.forEach(box => {
-            if (box.x > (this.x + this.dx)) {
-                dxStop = true
-            }
-        })
+        // collisionBoxes.forEach(box => {
+        //     if (box.x > (this.x + this.dx)) {
+        //         dxStop = true
+        //     }
+        // })
         if (window.key && !dxStop) {
             switch (window.key.toLowerCase()) {
                 case this.controls.forward:
