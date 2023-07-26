@@ -6,6 +6,7 @@ import {animate, resizeCanvas} from '/js/modules/functions/_functions.js'
 window.canvas = document.querySelector('canvas')
 window.c = canvas.getContext('2d') 
 window.key = null
+window.heldKeys = []
 
 canvas.clear = () => {
     c.clearRect(0, 0, canvas.width, canvas.height)
@@ -41,9 +42,18 @@ style(canvas, {
 
 window.addEventListener('keydown', (e) => {
     window.key = e.key
+    if (!window.heldKeys.includes(e.key)) {
+        window.heldKeys.push(e.key)
+        console.log(window.heldKeys);
+    }
 })
 window.addEventListener('keyup', (e) => {
     window.key == e.key ? window.key = null : window.key = window.key
+    if (window.heldKeys.includes(e.key)) {
+        let index = window.heldKeys.indexOf(e.key)
+        window.heldKeys.splice(index)
+        console.log(window.heldKeys);
+    }
 })
 
 resizeCanvas(20*40, 14*40)
