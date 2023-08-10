@@ -15,34 +15,31 @@ export default class Player extends HitBox {
 
     }
     playerControls(){
-        let dxStop = false
-        // collisionBoxes.forEach(box => {
-        //     if (box.x > (this.x + this.dx)) {
-        //         dxStop = true
-        //     }
-        // })
-        window.heldKeys.forEach(key => {
-            if (window.key && !dxStop) {
-                switch (window.key.toLowerCase()) {
-                    case this.controls.forward:
-                        this.dy = -this.speed
-                        break;
-                    case this.controls.left:
-                        this.dx = -this.speed
-                        break;
-                    case this.controls.backward:
-                        this.dy = this.speed
-                        break;
-                    case this.controls.right:
-                        this.dx = this.speed
-                        break;
-                    default:
-                        break;
-                }
-                
-            } else {
-                this.dy = this.dy * 0.8; this.dx = this.dx * 0.8;
+        if (window.key) {
+            switch (window.key.toLowerCase()) {
+                case this.controls.forward:
+                    this.dy = -this.speed
+                    break;
+                case this.controls.left:
+                    this.dx = -this.speed
+                    break;
+                case this.controls.backward:
+                    this.dy = this.speed
+                    break;
+                case this.controls.right:
+                    this.dx = this.speed
+                    break;
+                default:
+                    this.dx = 0
+                    this.dy = 0
+                    break;
             }
+            
+        } else {
+            this.dy = this.dy * 0.8; this.dx = this.dx * 0.8;
+        }
+        window.heldKeys.forEach(key => {
+
             
         });
     }

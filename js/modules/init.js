@@ -7,6 +7,8 @@ window.canvas = document.querySelector('canvas')
 window.c = canvas.getContext('2d') 
 window.key = null
 window.heldKeys = []
+window.collisionBoxes = []
+
 
 canvas.clear = () => {
     c.clearRect(0, 0, canvas.width, canvas.height)
@@ -44,7 +46,6 @@ window.addEventListener('keydown', (e) => {
     window.key = e.key
     if (!window.heldKeys.includes(e.key)) {
         window.heldKeys.push(e.key)
-        console.log(window.heldKeys);
     }
 })
 window.addEventListener('keyup', (e) => {
@@ -52,7 +53,6 @@ window.addEventListener('keyup', (e) => {
     if (window.heldKeys.includes(e.key)) {
         let index = window.heldKeys.indexOf(e.key)
         window.heldKeys.splice(index)
-        console.log(window.heldKeys);
     }
 })
 
